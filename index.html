@@ -366,6 +366,58 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!----------------------POP up maintenence------------->
+<style>
+  .popup {
+      display: none;
+      position: fixed;
+      bottom: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: bottom 0.5s;
+      z-index: 1000;
+  }
+  .popup.visible {
+      display: block;
+      bottom: 20px;
+  }
+  .popup .close-btn {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+  }
+</style>
+<div class="popup" id="popup">
+  <h2>Srinix Technology</h2>
+  <p>Our website is currently under construction and maintenance. Some elements might look unusual. Thank you for your understanding!</p>
+  <button class="close-btn" onclick="closePopup()">Close</button>
+</div>
+<script>
+  function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.classList.add('visible');
+  }
+
+  function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.classList.remove('visible');
+  }
+
+  window.onload = function() {
+      setTimeout(showPopup, 15000);
+  }
+</script>
+
+
 
 
 
