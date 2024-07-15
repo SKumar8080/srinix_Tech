@@ -57,8 +57,57 @@
         <!-- main-LTR -->
         <link rel="stylesheet" href="css/main-LTR.css">
         <title> SrinTech | Srinix Technology</title>
+
+
+        <!----------------Pop-up Maintainance code style---------->
+        <style>
+          /* Add styles for the popup */
+          #maintenance-popup {
+              position: fixed;
+              top: -200px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 90%;
+              max-width: 400px;
+              background-color: hwb(0 12% 85%);
+              border: 1px solid hwb(0 12% 85%);
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              padding: 20px;
+              text-align: center;
+              z-index: 10000; /* Higher z-index to ensure it appears over the navbar */
+              transition: top 0.5s ease-in-out;
+          }
+  
+          #maintenance-popup p {
+              margin: 0;
+              font-size: 1em;
+          }
+  
+          @media (min-width: 600px) {
+              #maintenance-popup {
+                  width: 50%;
+              }
+          }
+  
+          #close-btn {
+              display: block;
+              margin: 10px auto 0;
+              padding: 10px 20px;
+              background-color: #007bff;
+              color: #fff;
+              border: none;
+              cursor: pointer;
+              transition: background-color 0.3s;
+          }
+  
+          #close-btn:hover {
+              background-color: #0056b3;
+          }
+      </style>
   </head>
   <body class=" dark-theme ">
+     
+      
     <!--Start Page Header-->
     <header class=" page-header   header-basic" id="page-header">
       <div class="header-search-box">
@@ -133,6 +182,7 @@
       </div>
     </header>
     <!--End Page Header-->
+    
 <!-------------------------------------------POP-up code --------------->
 <!-- Add this script to your website's HTML file -->
 
@@ -366,71 +416,75 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!----------------------POP up maintenence-----
+<!----------------------POP up maintenence------
 <style>
-    .popup {
-        display: none;
-        position: fixed;
-        bottom: -200px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        transition: bottom 0.5s;
-        z-index: 1000;
-        width: 90%;
-        max-width: 400px;
-        text-align: center;
-    }
-    .popup.visible {
-        display: block;
-        bottom: 20px;
-    }
-    .popup .close-btn {
-        background-color: #444;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-
-    @media screen and (max-width: 600px) {
-        .popup {
-            padding: 15px;
-            font-size: 14px;
+        /* Add styles for the popup */
+        #maintenance-popup {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+            transition: top 0.5s ease-in-out;
         }
-        .popup .close-btn {
-            padding: 8px 16px;
+
+        #maintenance-popup p {
+            margin: 0;
+            font-size: 1em;
         }
-    }
-</style>
 
-<div class="popup" id="popup">
-  <h2>Srinix Technology</h2>
-    <p>Our website is currently under construction and maintenance. Some elements might look unusual. Thank you for your understanding!</p>
-    <button class="close-btn" onclick="closePopup()">Close</button>
-</div>
+        @media (min-width: 600px) {
+            #maintenance-popup {
+                width: 50%;
+            }
+        }
 
-<script>
-    function showPopup() {
-        const popup = document.getElementById('popup');
-        popup.classList.add('visible');
-    }
+        #close-btn {
+            display: block;
+            margin: 10px auto 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    function closePopup() {
-        const popup = document.getElementById('popup');
-        popup.classList.remove('visible');
-    }
+        #close-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    Add your existing website content here -->
 
-    window.onload = function() {
-        setTimeout(showPopup, 15000);
-    }
-</script>-------->
+    <!-- Maintenance Popup -->
+    <div id="maintenance-popup">
+      <p>🔧🚧 <strong>Srinix Technology</strong> is currently under maintenance and construction. Some items may be disrupted. We apologize for the inconvenience. 🚀</p>
+      <button id="close-btn">Close</button>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          setTimeout(function() {
+              var popup = document.getElementById("maintenance-popup");
+              popup.style.top = "20px";
+          }, 15000);
+
+          document.getElementById("close-btn").addEventListener("click", function() {
+              var popup = document.getElementById("maintenance-popup");
+              popup.style.top = "-200px";
+          });
+      });
+  </script>
+
 
 
 
@@ -1257,5 +1311,25 @@ defer>
         
         <!--     main     -->
         <script src="js/main.js"></script>
+        <!-- Maintenance Popup -->
+    <div id="maintenance-popup">
+      <title>Srinix Technology</title>
+      <p>🔧🚧 <strong>Srinix Technology</strong> is currently under maintenance and construction. Some items may be disrupted. We apologize for the inconvenience. 🚀</p>
+      <button id="close-btn">Close</button>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          setTimeout(function() {
+              var popup = document.getElementById("maintenance-popup");
+              popup.style.top = "25px"; // Adjust this value if needed to ensure it doesn't overlap with the navbar
+          }, 30000);
+
+          document.getElementById("close-btn").addEventListener("click", function() {
+              var popup = document.getElementById("maintenance-popup");
+              popup.style.top = "-200px";
+          });
+      });
+  </script>
   </body>
 </html>
