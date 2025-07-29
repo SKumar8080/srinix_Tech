@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IT Solutions &amp; Business Services Responsive HTML5 Bootstrap5  Website Template">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- fav icon -->
+        <link rel="icon" href="assets/images/fav-icon/sri-logo.png">
+        
+        <!-- bootstarp -->
+        <link rel="stylesheet" href="css/vendors/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" >
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+        
+        <!-- animate.css file -->
+        <link rel="stylesheet" href="css/vendors/animate.css">
+        
+        <!-- flaticon -->
+        <link rel="stylesheet" href="css/vendors/flaticon/flaticon.css">
+        
+        <!-- fontAwesome -->
+        <link rel="stylesheet" href="css/vendors/all.min.css">
+        
+        <!-- bootstrap icons -->
+        <link rel="stylesheet" href="css/vendors/bootstrap-icons-1.9.1/bootstrap-icons.css">
+        
+        <!-- Font Family -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;display=swap">
+        
+        <!-- main-LTR -->
+        <link rel="stylesheet" href="css/main-LTR.css">
+        <title> SrinTech  |   Contact Us</title>
+    <style>
+        /* Custom styles for service selection */
+        .service-selection {
+            margin: 20px 0;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .service-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-option.selected {
+            background: rgba(0, 123, 255, 0.2);
+            border-color: #007bff;
+        }
+        
+        .service-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .service-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .service-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        
+        .custom-service-container {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modal styles */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: #1a1a2e;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transform: translateY(20px);
+            animation: modalSlideUp 0.5s ease forwards;
+        }
+        
+        @keyframes modalSlideUp {
+            to { transform: translateY(0); }
+        }
+        
+        .modal-header {
+            background: #0f3460;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .modal-body p {
+            color: #c0c0c0;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .contact-btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .email-btn {
+            background: #D44638;
+        }
+        
+        .email-btn:hover {
+            background: #c1351d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 70, 56, 0.3);
+        }
+        
+        /* Form enhancements */
+        .contact-form-inputs .input-wrapper {
+            margin-bottom: 25px;
+        }
+        
+        .form-notice {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- Existing header and hero section -->
+    <header class=" page-header   inner-page-header header-basic" id="page-header">
+        <div class="header-search-box">
+          <div class="close-search"></div>
+          <form class="nav-search search-form" role="search" method="get" action="#">
+            <div class="search-wrapper"> 
+              <label class="search-lbl">Search for:</label>
+              <input class="search-input" type="search" placeholder="Search..." name="searchInput" autofocus="autofocus"/>
+              <button class="search-btn" type="submit"><i class="bi bi-search icon"></i></button>
+            </div>
+          </form>
+        </div>
+        <div class="container">
+          <nav class="menu-navbar">
+            <div class="header-logo"><a class="logo-link" href="#"><img class="logo-img light-logo" loading="lazy" src="assets/images/logo/final_logo-removebg-preview.png" alt="logo"/><img class="logo-img  dark-logo" loading="lazy" src="assets/images/logo/logo-dark1_2_-removebg-preview.png" alt="logo"/></a></div>
+            <div class="links menu-wrapper ">
+              <ul class="list-js links-list">
+                <li class="menu-item has-sub-menu"><a class="menu-link   active" href="index.html">home <i class=" ######"> </i></a>
+                  <!--<ul class="sub-menu ">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="./">home 1</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="home-2.html">home 2 [ Slider 1 ]</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="home-3.html">home 3 [ Slider 2 ]</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="home-rtl.html">home RTL</a></li> 
+                  </ul> -->
+                </li> 
+                <li class="menu-item"><a class="menu-link  " href="#about">about us </a></li>
+                <li class="menu-item has-sub-menu"><a class="menu-link  " href="index.html">services<i class="######"> </i></a>
+                 <!-- <ul class="sub-menu ">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="services.html">services</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="service-single.html">service single</a></li>
+                  </ul> ---->
+                </li>
+                <li class="menu-item has-sub-menu"><a class="menu-link  " href="https://skumar8080.github.io/portfolio/">portfolio <i class="#####"> </i></a>
+                 <!----- <ul class="sub-menu ">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="portfolio-grid.html">portfolio grid</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="portfolio-blocks.html">portfolio blocks</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="portfolio-slider.html">portfolio slider</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="portfolio-single.html">portfolio single</a></li>
+                  </ul>--->
+                </li>
+                <li class="menu-item has-sub-menu"><a class="menu-link  " href="index.html ">blog<i class="######"> </i></a>
+                <!----- <ul class="sub-menu ">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="blog-home-1-col.html">blog home 1 colmun</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="blog-home-2-col.html">blog home 2 columns</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="blog-home-3-col.html">blog home 3 columns</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="post-single.html">single post</a></li>
+                  </ul>----> 
+                </li>
+                <!-------<li class="menu-item has-sub-menu"><a class="menu-link  " href="#0">pages<i class="fas fa-plus  plus-icon"> </i></a>
+                  <ul class="sub-menu ">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="pricing.html">pricing plans</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="our-team.html">our team</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="team-member.html">team member</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="faq.html">FAQ</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="404.html">404 page</a></li>
+                  </ul>
+                </li>---->
+                <li class="menu-item"><a class="menu-link  " href="contact-us.html">contact us </a></li>
+              </ul>
+            </div>
+            <div class="controls-box">
+              <!--Menu Toggler button-->
+              <div class="control  menu-toggler"><span></span><span></span><span></span></div>
+              <!--search Icon button-->
+              <div class="control header-search-btn"><i class="fa fa-search icon"></i></div>
+              <!--Dark/Light mode button-->
+              <div class="mode-switcher ">
+                <div class="switch-inner go-light " title="Switch To Light Mode "><i class="fa fa-sun icon "></i></div>
+                <div class="switch-inner go-dark" title="Switch To Dark Mode "><i class="fa fa-moon icon "></i></div>
+              </div>
+              <!--mini shoping cart-->
+            </div>
+          </nav>
+        </div>
+      </header>
+    <!-- Start contact-us -->
+    <section class="contact-us mega-section pb-0" id="contact-us">
+        <div class="container">
+            <!-- Existing locations section -->
+            
+            <section class="contact-us-form-section mega-section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-panel">
+                            <div class="sec-heading centered">
+                                <div class="content-area">
+                                    <h2 class="title wow fadeInUp" data-wow-delay=".4s">Have any questions? Let's answer them</h2>
+                                </div>
+                            </div>
+                            <div class="contact-form-inputs wow fadeInUp" data-wow-delay=".6s">
+                                <div class="custom-form-area input-boxed"> 
+                                    <form class="main-form" id="contact-us-form">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <div class="input-wrapper">
+                                                    <input class="text-input" id="user-name" name="name" type="text" required>
+                                                    <label class="input-label" for="user-name">Name <span class="req">*</span></label>
+                                                    <span class="b-border"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="input-wrapper">
+                                                    <input class="text-input" id="user-email" name="email" type="email" required>
+                                                    <label class="input-label" for="user-email">Email <span class="req">*</span></label>
+                                                    <span class="b-border"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="service-selection">
+                                                    <label class="input-label">Select Service <span class="req">*</span></label>
+                                                    <div class="service-grid">
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Web Development">
+                                                            <i class="bi bi-code-slash"></i>
+                                                            <div>Web Development</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Ethical Hacking Training">
+                                                            <i class="bi bi-shield-lock"></i>
+                                                            <div>Ethical Hacking Training</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Security Tools Development">
+                                                            <i class="bi bi-tools"></i>
+                                                            <div>Security Tools</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Security Consulting">
+                                                            <i class="bi bi-people"></i>
+                                                            <div>Security Consulting</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Video and Graphics Designing">
+                                                            <i class="bi bi-camera-reels"></i>
+                                                            <div>Video & Graphics</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Zero to Hero in Cybersec">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                            <div>Cybersecurity Mastery</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="AI/ML and Datascience Mastery">
+                                                            <i class="bi bi-cpu"></i>
+                                                            <div>AI/ML & Data Science</div>
+                                                        </label>
+                                                        <label class="service-option">
+                                                            <input type="radio" name="service" value="Custom" id="custom-service-option">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                            <div>Custom Project</div>
+                                                        </label>
+                                                    </div>
+                                                    <div id="service-error" class="error-msg" style="display:none; color:#ff6b6b; margin-top:5px;">Please select a service</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12 custom-service-container" id="custom-service-container">
+                                                <div class="input-wrapper">
+                                                    <input class="text-input" id="custom-service-desc" name="custom-service" type="text" placeholder="Describe your custom service">
+                                                    <label class="input-label" for="custom-service-desc">Custom Service Description</label>
+                                                    <span class="b-border"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="input-wrapper">
+                                                    <textarea class="text-input" id="msg-text" name="message" required></textarea>
+                                                    <label class="input-label" for="msg-text">Your Message <span class="req">*</span></label>
+                                                    <span class="b-border"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12 submit-wrapper">
+                                                <button class="btn-solid" id="submit-form" type="button">Submit</button>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <p class="form-notice">We'll contact you within 24 hours to discuss your project requirements.</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- End contact-us -->
+    
+    <!-- Contact Method Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Choose Contact Method</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>We're ready to assist you! How would you like to get in touch?</p>
+                <div class="contact-options">
+                    <a href="#" class="contact-btn whatsapp-btn" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+                    </a>
+                    <a href="#" class="contact-btn email-btn" id="emailBtn">
+                        <i class="far fa-envelope"></i> Send an Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Existing footer and scripts -->
+    <footer class="page-footer dark-color-footer" id="page-footer">
+        <div class="overlay-photo-image-bg" data-bg-img="assets/images/sections-bg-images/footer-bg-1.jpg" data-bg-opacity=".25"></div>
+        <div class="container">
+          <div class="row footer-cols">
+            <div class="col-12 col-md-8 col-lg-4  footer-col "><img class="img-fluid footer-logo" loading="lazy" src="assets/images/logo/logo-dark1(1).png" alt="logo"/>
+              <div class="footer-col-content-wrapper">        
+                <p class="footer-text-about-us ">
+                  WHO WE ARE...! <br>
+                  We develop and execute marketing campaigns, create content, and analyze data to optimize their strategies.
+                  
+                </p>
+              </div>
+              <div class="form-area ">
+                <div class="mailchimp-form ">
+                  <form class="one-field-form" method="post" action="#0">
+                    <div class="field-group ">
+                      <label class="email-label" for="email-input"> Subscribe to our news letter</label>
+                      <input class="email-input " type="email" value="" name="EMAIL" id="email-input" placeholder="Email Address" autocomplete="off"/>
+                      <div class="cta-area">
+                        <input class="btn-solid subscribe-btn" type="submit" value="Subscribe" name="subscribe"/>
+                      </div>
+                    </div><span class="email-notice">*we will not share your personal info</span>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-2  footer-col ">
+              <h2 class=" footer-col-title    ">useful links</h2>
+              <div class="footer-col-content-wrapper">
+                <ul class="footer-menu ">
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://www.google.co.in/">Google</a>
+                  </li>
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://www.dribble.com">Dribbble</a>
+                  </li>
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="#0">linkedIn</a>
+                  </li>
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://www.wikipedia">wikipedia</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-6 col-lg-2 footer-col ">
+              <h2 class=" footer-col-title    ">Resources</h2>
+              <div class="footer-col-content-wrapper">
+                <ul class="footer-menu">
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="mailto:info@srintech.in">support</a>
+                  </li>
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://wa.me/+917894987479">Earn With us</a>
+                  </li>
+  
+                  </li>
+                  <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://skumar8080.github.io/portfolio/project%20file/services.html">projects</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12     col-lg-4 footer-col ">
+              <h2 class=" footer-col-title    ">contact information</h2>
+              <div class="footer-col-content-wrapper">       
+                <div class="contact-info-card"><i class="bi bi-envelope icon"></i><a class="text-lowercase  info" href="mailto:info@srintech.in">info@srintech.in</a></div>
+                <div class="contact-info-card"><i class="bi bi-geo-alt icon"></i><span class="text-lowercase  info">F.M Nagar, Balasore</span></div>
+                <div class="contact-info-card"><i class="bi bi-phone icon"></i><a class="info" href="tel:+9178949874749">+91 78949874749  </a></div>
+                <div class="contact-info-card">
+                  <div class="social-icons">
+                    <div class="sc-wrapper dir-row sc-size-32">
+                      <ul class="sc-list">
+                        <li class="sc-item " title="Facebook"><a class="sc-link" href="#0" title="social media icon"><i class="fab fa-facebook-f sc-icon"></i></a></li>
+                        <li class="sc-item " title="youtube"><a class="sc-link" href="https://www.youtube.com/@crackwithkumar1082" title="social media icon"><i class="fab fa-youtube sc-icon"></i></a></li>
+                        <li class="sc-item " title="instagram"><a class="sc-link" href="https://www.instagram.com/srimant999" title="social media icon"><i class="fab fa-instagram sc-icon"></i></a></li>
+                        <li class="sc-item " title="twitter"><a class="sc-link" href="#0" title="social media icon"><i class="fab fa-twitter sc-icon"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyrights ">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6 d-flex justify-content-start">
+                <p class="creadits">
+                   
+                  
+                  &copy; 2023
+                  Created by:
+                  
+                             <a class="link" href="index.html">Srinix Technology</a>
+                </p>
+              </div>
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <div class="terms-links"><a href="t&c.html">Terms of Use </a>
+                  | <a href="pvt&policy.html">Privacy Policy.</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- End  page-footer Section-->
+      <div class="loading-screen" id="loading-screen"><span class="bar top-bar"></span><span class="bar down-bar"></span><span class="progress-line"></span><span class="loading-counter"> </span></div>
+      <!-- End loading-screen Component-->
+      <!-- Start back-to-top Component-->
+      <div class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up icon "></i>
+      </div>
+      <!-- End back-to-top Component-->   
+          
+          <!--     JQuery     -->
+          <script src="js/vendors/jquery-3.6.1.min.js"></script>
+          
+          <!--     bootstrap     -->
+          <script src="js/vendors/bootstrap.bundle.min.js"></script>
+          
+          <!--     wow     -->
+          <script src="js/vendors/wow.min.js"></script>
+          
+          <!--     main     -->
+          <script src="js/main.js"></script>
+    <!-- Additional Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle custom service input
+            const customOption = document.getElementById('custom-service-option');
+            const customContainer = document.getElementById('custom-service-container');
+            
+            customOption.addEventListener('change', function() {
+                if (this.checked) {
+                    customContainer.style.display = 'block';
+                }
+            });
+            
+            document.querySelectorAll('input[name="service"]').forEach(radio => {
+                if (radio.value !== 'Custom') {
+                    radio.addEventListener('change', function() {
+                        customContainer.style.display = 'none';
+                    });
+                }
+            });
+            
+            // Service selection styling
+            const serviceOptions = document.querySelectorAll('.service-option');
+            serviceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    serviceOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    document.getElementById('service-error').style.display = 'none';
+                });
+            });
+            
+            // Form submission
+            const submitBtn = document.getElementById('submit-form');
+            const contactModal = document.getElementById('contactModal');
+            const closeModal = document.getElementById('closeModal');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const emailBtn = document.getElementById('emailBtn');
+            
+            submitBtn.addEventListener('click', function() {
+                // Validate form
+                const name = document.getElementById('user-name').value;
+                const email = document.getElementById('user-email').value;
+                const message = document.getElementById('msg-text').value;
+                const selectedService = document.querySelector('input[name="service"]:checked');
+                const customDesc = document.getElementById('custom-service-desc').value;
+                
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                if (!selectedService) {
+                    document.getElementById('service-error').style.display = 'block';
+                    return;
+                }
+                
+                // Get service text
+                let serviceText = selectedService.value;
+                if (selectedService.value === 'Custom') {
+                    serviceText = customDesc || 'Custom Service';
+                }
+                
+                // Store form data for modal
+                const formData = {
+                    name: name,
+                    email: email,
+                    service: serviceText,
+                    message: message
+                };
+                
+                // Show modal
+                contactModal.style.display = 'flex';
+                
+                // Set up WhatsApp message
+                const whatsappMessage = `Hello SrinTech Team!%0A%0AMy name is ${encodeURIComponent(formData.name)}.%0A%0AI'm interested in: ${encodeURIComponent(formData.service)}.%0A%0AMy message: ${encodeURIComponent(formData.message)}%0A%0AYou can contact me at: ${encodeURIComponent(formData.email)}`;
+                whatsappBtn.href = `https://wa.me/917894987479?text=${whatsappMessage}`;
+                
+                // Set up email message
+                const emailSubject = `Service Inquiry: ${encodeURIComponent(formData.service)}`;
+                const emailBody = `Dear SrinTech Team,%0A%0AMy name is ${encodeURIComponent(formData.name)}.%0A%0AI'm interested in your ${encodeURIComponent(formData.service)} service.%0A%0A${encodeURIComponent(formData.message)}%0A%0APlease contact me at: ${encodeURIComponent(formData.email)}%0A%0ARegards,%0A${encodeURIComponent(formData.name)}`;
+                emailBtn.href = `mailto:admin@srintech.in?subject=${emailSubject}&body=${emailBody}`;
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                contactModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === contactModal) {
+                    contactModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
