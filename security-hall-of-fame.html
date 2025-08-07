@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SrinTech Security Hall of Fame</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d82;
+            --secondary: #00c4cc;
+            --accent: #ff3e71;
+            --dark: #0a0f1d;
+            --darker: #060913;
+            --light: #f0f8ff;
+            --matrix: #00ff41;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Matrix background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .matrix-column {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 100%;
+            margin-right: 20px;
+            color: var(--matrix);
+            font-size: 18px;
+            text-align: center;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            opacity: 0.7;
+        }
+        
+        .matrix-char {
+            animation: fall linear infinite;
+            animation-duration: calc(15s * var(--speed));
+            animation-delay: calc(-5s * var(--delay));
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(10, 15, 29, 0.9), rgba(6, 9, 19, 0.7));
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 196, 204, 0.3);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 86, 179, 0.3);
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: logoLine 1.5s ease forwards 0.5s;
+        }
+        
+        @keyframes logoLine {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.8s;
+        }
+        
+        .page-title {
+            font-size: 3.5rem;
+            margin: 2rem 0;
+            background: linear-gradient(to right, var(--light), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(240, 248, 255, 0.8);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.2s;
+        }
+        
+        /* Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.4s;
+        }
+        
+        .stat-card {
+            background: rgba(20, 27, 47, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 196, 204, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 196, 204, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hall-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.6s;
+        }
+        
+        .researcher-card {
+            background: linear-gradient(145deg, rgba(20, 27, 47, 0.8), rgba(10, 15, 29, 0.9));
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 196, 204, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .researcher-card:nth-child(1) { animation: cardAppear 0.8s ease forwards 1.8s; }
+        .researcher-card:nth-child(2) { animation: cardAppear 0.8s ease forwards 1.9s; }
+        .researcher-card:nth-child(3) { animation: cardAppear 0.8s ease forwards 2.0s; }
+        .researcher-card:nth-child(4) { animation: cardAppear 0.8s ease forwards 2.1s; }
+        .researcher-card:nth-child(5) { animation: cardAppear 0.8s ease forwards 2.2s; }
+        .researcher-card:nth-child(6) { animation: cardAppear 0.8s ease forwards 2.3s; }
+        
+        @keyframes cardAppear {
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .researcher-card::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            z-index: -1;
+            border-radius: 18px;
+            animation: borderRotate 6s linear infinite;
+        }
+        
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .researcher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 196, 204, 0.4);
+        }
+        
+        .researcher-name {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .researcher-name::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .vulnerability {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .vuln-title {
+            font-weight: 600;
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vuln-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .vuln-desc {
+            color: rgba(240, 248, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-top: 0.8rem;
+        }
+        
+        .date {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            margin-top: 1rem;
+        }
+        
+        .date i {
+            margin-right: 8px;
+        }
+        
+        .severity {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .critical { background: linear-gradient(45deg, #dc3545, #ff3e71); color: white; }
+        .high { background: linear-gradient(45deg, #fd7e14, #ff9a3e); color: white; }
+        .medium { background: linear-gradient(45deg, #ffc107, #ffd54f); color: black; }
+        .low { background: linear-gradient(45deg, #20c997, #38f5c8); color: white; }
+        
+        .acknowledgement {
+            text-align: center;
+            font-style: italic;
+            margin: 5rem 0 3rem;
+            padding: 3rem;
+            background: rgba(20, 27, 47, 0.7);
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 196, 204, 0.2);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2.5s;
+        }
+        
+        .acknowledgement::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 196, 204, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .acknowledgement p {
+            font-size: 1.3rem;
+            color: var(--light);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .acknowledgement p:first-child {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: rgba(240, 248, 255, 0.6);
+            font-size: 1rem;
+            position: relative;
+            border-top: 1px solid rgba(0, 196, 204, 0.2);
+            margin-top: 4rem;
+        }
+        
+        .security-contact {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 86, 179, 0.2);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .security-contact:hover {
+            background: rgba(0, 86, 179, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+        }
+        
+        .security-contact i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .logo { font-size: 3.5rem; }
+            .page-title { font-size: 2.8rem; }
+            .hall-container { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        }
+        
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .page-title { font-size: 2.3rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .acknowledgement { padding: 2rem 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .logo { font-size: 2.5rem; }
+            .page-title { font-size: 2rem; }
+            .container { padding: 0 1.2rem; }
+            .researcher-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <div id="matrix-bg"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">SRINTECH</div>
+            <div class="tagline">PLACE WHERE TECH GROWS</div>
+            <h1 class="page-title">Security Hall of Fame</h1>
+            <p class="page-subtitle">We extend our deepest gratitude to the security researchers who have helped make SrinTech safer through responsible disclosure of vulnerabilities. These individuals have demonstrated exceptional skill and integrity in helping protect our users and systems.</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">142</div>
+                <div class="stat-label">Vulnerabilities Reported</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Fixed Within SLA</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">36</div>
+                <div class="stat-label">Researchers Recognized</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">24h</div>
+                <div class="stat-label">Average Response Time</div>
+            </div>
+        </div>
+        
+        <!-- Researchers -->
+        <div class="hall-container">
+            <div class="researcher-card">
+                <h3 class="researcher-name">Alex Johnson</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-bug"></i> Cross-Site Scripting (XSS) in User Dashboard</div>
+                    <div class="vuln-desc">Stored XSS vulnerability allowed execution of arbitrary JavaScript in authenticated user context.</div>
+                    <div class="severity critical">Critical <i class="fas fa-radiation"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: Jan 15, 2025 | Resolved: Jan 22, 2025</div>
+                </div>
+            </div>
+            
+            <div class="researcher-card">
+                <h3 class="researcher-name">SecurityResearchTeam@WhiteHat</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-shield-alt"></i> Authentication Bypass via API Endpoint</div>
+                    <div class="vuln-desc">Insecure direct object reference allowed unauthorized access to privileged endpoints.</div>
+                    <div class="severity high">High <i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: Mar 3, 2025 | Resolved: Mar 8, 2025</div>
+                </div>
+            </div>
+            
+            <div class="researcher-card">
+                <h3 class="researcher-name">Priya Sharma</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-key"></i> Insecure Password Reset Implementation</div>
+                    <div class="vuln-desc">Password reset tokens not properly invalidated after use or password change.</div>
+                    <div class="severity medium">Medium <i class="fas fa-exclamation-circle"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: Apr 18, 2025 | Resolved: Apr 25, 2025</div>
+                </div>
+            </div>
+            
+            <div class="researcher-card">
+                <h3 class="researcher-name">Marcus Chen</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-exchange-alt"></i> CSRF in Account Settings</div>
+                    <div class="vuln-desc">Cross-Site Request Forgery vulnerability allowed unauthorized account modifications.</div>
+                    <div class="severity medium">Medium <i class="fas fa-exclamation-circle"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: May 7, 2025 | Resolved: May 12, 2025</div>
+                </div>
+            </div>
+            
+            <div class="researcher-card">
+                <h3 class="researcher-name">OpenSource Security</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-info-circle"></i> Information Disclosure via Error Messages</div>
+                    <div class="vuln-desc">Verbose error messages revealed internal system details and stack traces.</div>
+                    <div class="severity low">Low <i class="fas fa-info-circle"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: Jun 21, 2025 | Resolved: Jun 23, 2025</div>
+                </div>
+            </div>
+            
+            <div class="researcher-card">
+                <h3 class="researcher-name">Rohan Kapoor</h3>
+                <div class="vulnerability">
+                    <div class="vuln-title"><i class="fas fa-cookie-bite"></i> Insecure Cookie Settings</div>
+                    <div class="vuln-desc">Missing Secure and HttpOnly flags on session cookies.</div>
+                    <div class="severity medium">Medium <i class="fas fa-exclamation-circle"></i></div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> Reported: Jul 14, 2025 | Resolved: Jul 15, 2025</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Acknowledgement -->
+        <div class="acknowledgement">
+            <p>We extend our sincere thanks to all researchers who have contributed to the security of SrinTech, including those who wish to remain anonymous.</p>
+            <p>Your expertise and ethical approach help us maintain a secure environment for our users.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 SrinTech Private Limited. All rights reserved.</p>
+            <a href="mailto:security@srintech.in" class="security-contact">
+                <i class="fas fa-shield-alt"></i> Report Security Vulnerabilities: security@srintech.in
+            </a>
+        </div>
+    </footer>
+    
+    <script>
+        // Generate matrix background
+        function createMatrix() {
+            const matrixBg = document.getElementById('matrix-bg');
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
+            const columns = Math.floor(window.innerWidth / 30);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                
+                // Random animation properties
+                const charCount = 20 + Math.floor(Math.random() * 20);
+                const speed = 0.5 + Math.random() * 1.5;
+                const delay = Math.random();
+                
+                column.style.setProperty('--speed', speed);
+                column.style.setProperty('--delay', delay);
+                
+                // Create falling characters
+                for (let j = 0; j < charCount; j++) {
+                    const char = document.createElement('div');
+                    char.className = 'matrix-char';
+                    char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+                    char.style.opacity = 0.1 + Math.random() * 0.9;
+                    column.appendChild(char);
+                }
+                
+                matrixBg.appendChild(column);
+            }
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            createMatrix();
+            
+            // Add subtle hover effect to cards
+            const cards = document.querySelectorAll('.researcher-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const matrixBg = document.getElementById('matrix-bg');
+            matrixBg.innerHTML = '';
+            createMatrix();
+        });
+    </script>
+</body>
+</html>
