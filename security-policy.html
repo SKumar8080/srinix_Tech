@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Policy | SrinTech</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #1a1a1a;
+            --accent: #e63946;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            font-size: 1.8rem;
+        }
+        h3 {
+            color: var(--secondary);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .contact-box {
+            background: #d1e7dd;
+            border: 1px solid #a3cfbb;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 25px;
+            }
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">SRINTECH</div>
+            <div class="tagline">PLACE WHERE TECH GROWS</div>
+        </header>
+
+        <div class="content-card">
+            <h1>Security Vulnerability Disclosure Policy</h1>
+            
+            <p>SrinTech considers the security of our systems and data a top priority. This policy outlines our approach to security vulnerability disclosure and provides guidelines for security researchers.</p>
+            
+            <h2>1. Responsible Disclosure Guidelines</h2>
+            <p>We require that all researchers:</p>
+            <ul>
+                <li>Make every effort to avoid privacy violations, degradation of user experience, disruption to production systems, and destruction of data</li>
+                <li>Use only the designated communication channels to report vulnerability information</li>
+                <li>Keep information about any vulnerabilities you've discovered confidential until we have resolved the issue</li>
+                <li>Do not perform any attack that could harm the reliability/integrity of our services or data</li>
+            </ul>
+            
+            <h2>2. Reporting Vulnerabilities</h2>
+            <div class="highlight">
+                <h3>Preferred Reporting Method:</h3>
+                <p>Email encrypted reports to: <strong>security@srintech.in</strong></p>
+                <p>Use our PGP key: <a href="/security-pgp.txt">Download Public Key</a></p>
+                
+                <h3>Alternative Channels:</h3>
+                <p>admin@srintech.in or skumar.srintech@gmail.com</p>
+            </div>
+            
+            <p>Include in your report:</p>
+            <ol>
+                <li>Detailed description of the vulnerability</li>
+                <li>Steps to reproduce the issue (proof-of-concept scripts or screenshots)</li>
+                <li>Impact assessment of the vulnerability</li>
+                <li>Your contact information</li>
+            </ol>
+            
+            <h2>3. Our Commitment</h2>
+            <ul>
+                <li><span class="badge">72h</span> Response to initial vulnerability reports</li>
+                <li><span class="badge">5d</span> Triage assessment completion</li>
+                <li><span class="badge">30d</span> Regular status updates throughout remediation</li>
+                <li><span class="badge">90d</span> Target resolution time for critical vulnerabilities</li>
+                <li>Public acknowledgement in our Security Hall of Fame (with permission)</li>
+            </ul>
+            
+            <h2>4. Safe Harbor Terms</h2>
+            <p>Security researchers acting in good faith and in accordance with this policy can expect:</p>
+            <ul>
+                <li>No legal action or suspension of accounts related to research activities</li>
+                <li>Protection of researcher identity (unless public acknowledgement requested)</li>
+                <li>Coordination on public disclosure timelines</li>
+                <li>Gratitude for helping protect our users and systems</li>
+            </ul>
+            
+            <h2>5. Out-of-Scope Vulnerabilities</h2>
+            <p>The following are generally not eligible for reward:</p>
+            <ul>
+                <li>Denial of Service (DoS/DDoS) vulnerabilities</li>
+                <li>Social engineering attacks</li>
+                <li>Physical security assessments</li>
+                <li>Third-party service vulnerabilities (unless directly exploitable via SrinTech)</li>
+                <li>Automated scanner reports without proof-of-concept</li>
+            </ul>
+            
+            <div class="contact-box">
+                <h3>Security Team Contact</h3>
+                <p>Email: security@srintech.in</p>
+                <p>PGP Fingerprint: 1A2B 3C4D 5E6F 7A3B 8F1C  2D9E 0A4F 7C8D 9E0A</p>
+                <p>For sensitive communications, always use encryption</p>
+            </div>
+            
+            <p><strong>Policy Version:</strong> 2.1 | <strong>Last Updated:</strong> August 8, 2025</p>
+        </div>
+        
+        <footer>
+            <p>© 2025 SrinTech Private Limited. All rights reserved.</p>
+            <p>This document may be freely distributed in its entirety without modification.</p>
+        </footer>
+    </div>
+</body>
+</html>

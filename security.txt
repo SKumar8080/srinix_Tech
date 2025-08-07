@@ -1,0 +1,24 @@
+-----BEGIN SECURITY.TXT FILE-----
+
+#  _____ _____ ___ _   _ _____ _____ ___  ____  
+# / ____|  __ \_ _| \ | |_   _| ____/ _ \|  _ \ 
+#| (___ | |  | | ||  \| | | | |  _|| | | | |_) |
+# \___ \| |  | | || . ` | | | | |__| |_| |  __/ 
+# ____) | |__| |_|| |\  |_| |_|_____\___/|_|    
+#|_____/|_____/___|_| \_|_____|               
+# 
+# PLACE WHERE TECH GROWS
+#
+# SrinTech takes security seriously. If you discover vulnerabilities,
+# please act responsibly and report them immediately.
+
+Contact: mailto:security@srintech.in,mailto:admin@srintech.in,mailto:skumar.srintech@gmail.com
+Encryption: https://srintech.in/security-pgp.txt
+Policy: https://srintech.in/security-policy
+Canonical: https://srintech.in/.well-known/security.txt
+Expires: 2025-12-31T23:59:59.000Z
+Acknowledgments: https://srintech.in/security-hall-of-fame
+Preferred-Languages: en
+Hiring: https://srintech.in/careers#security
+
+-----END SECURITY.TXT FILE-----
