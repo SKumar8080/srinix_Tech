@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srintech | Elite Cybersecurity Internship</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .hero-bg {
+            background-color: #0a0a0a;
+            background-image: radial-gradient(#1f2937 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.2) 0%, rgba(29, 78, 216, 0) 60%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), inset 0 0 5px rgba(59, 130, 246, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6), inset 0 0 8px rgba(59, 130, 246, 0.5);
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glitch {
+            animation: glitch 1.5s linear infinite;
+        }
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <header class="hero-bg relative">
+        <div class="hero-glow"></div>
+        <div class="relative z-10 container mx-auto px-6 py-24 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-4">
+                Stop Learning. <span class="text-blue-400">Start Hacking.</span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-8">
+                The classroom taught you theory. We give you the keys to the kingdom. This isn't another certificate. This is your entry into the world of elite cybersecurity.
+            </p>
+            <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" class="btn-primary inline-block bg-blue-600 text-white font-bold uppercase tracking-wider px-8 py-4 rounded-lg text-lg">
+                Join The Free Internship Now
+            </a>
+            <p class="text-sm mt-4 text-gray-500">Powered by Srintech - Forging India's Tech Future.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24 space-y-24 md:space-y-32">
+
+        <!-- Why Us Section -->
+        <section class="scroll-reveal text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Is This Free?</h2>
+            <p class="max-w-2xl mx-auto text-gray-400 mb-12">Because we're not building a business. We're building an army. We find the top 1% of talent, and we give them the arsenal to succeed. Your success is our victory.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3m6-9h3m-3 6h3M9 6H6m0 9h3m4.5-4.5L12 12m0 0l-2.5 2.5M12 12l2.5 2.5m0 0l2.5 2.5M12 12l2.5-2.5m0 0l2.5-2.5"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Real-World Scenarios</h3>
+                    <p class="text-gray-400">Forget textbook problems. You'll work on simulated systems that mirror real corporate networks.</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Elite Community</h3>
+                    <p class="text-gray-400">Join a curated WhatsApp group of future cyber warriors. Network, collaborate, and rise together.</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Portfolio, Not Paper</h3>
+                    <p class="text-gray-400">The final project is a verifiable asset for your resume, proving you can do the work, not just pass a test.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="scroll-reveal text-center">
+            <blockquote class="max-w-3xl mx-auto">
+                <p class="text-2xl md:text-3xl italic text-gray-300">"The amateur hacker hacks systems. The professional hacks the assumptions behind the systems."</p>
+                <cite class="block text-lg text-blue-400 mt-4 not-italic font-bold">- Srimant, Founder of Srintech</cite>
+            </blockquote>
+        </section>
+
+        <!-- Curriculum Section -->
+        <section class="scroll-reveal">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Your 1-Week Mission Briefing</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="border-l-2 border-blue-500 pl-8 space-y-12">
+                    <!-- Module 1 -->
+                    <div class="relative">
+                        <div class="absolute -left-10 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-blue-400 font-mono">Module 01: Intro to the Battlefield</h3>
+                        <p class="text-gray-400">Understand Networking, The CIA Triad, and the Cybercrime landscape. Know your enemy before you engage.</p>
+                    </div>
+                    <!-- Module 2 -->
+                    <div class="relative">
+                        <div class="absolute -left-10 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-blue-400 font-mono">Module 02: Your First Weapon</h3>
+                        <p class="text-gray-400">Master the command line in Kali Linux. This is your digital scalpel. Learn to wield it with precision.</p>
+                    </div>
+                    <!-- Module 3 -->
+                    <div class="relative">
+                        <div class="absolute -left-10 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-blue-400 font-mono">Module 03: Reconnaissance</h3>
+                        <p class="text-gray-400">Learn the theory behind Nmap and Wireshark. Discover how to map your target's defenses without firing a single shot.</p>
+                    </div>
+                     <!-- Module 4 -->
+                    <div class="relative">
+                        <div class="absolute -left-10 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-blue-400 font-mono">Module 04: The Final Project</h3>
+                        <p class="text-gray-400">Analyze a complex scenario, identify vulnerabilities, and present your findings. This is your proof of work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Next Section -->
+        <section class="scroll-reveal bg-gray-900 border border-gray-800 rounded-2xl p-8 md:p-12 text-center">
+             <h2 class="text-3xl md:text-4xl font-bold mb-4">This Is Only The Beginning.</h2>
+             <p class="max-w-2xl mx-auto text-gray-400 mb-8">The free program is a filter. It identifies the dedicated. For those who qualify, the door to the **"Ethical Hacking Immersion"** program opens. Live sessions, advanced labs, and real-world exploitation. Prove your worth, and we will give you the keys to the next level.</p>
+             <span class="inline-block bg-gray-800 text-blue-300 font-mono px-4 py-2 rounded-lg">Status: [LOCKED]</span>
+        </section>
+
+    </main>
+
+    <!-- Final CTA Section -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-4">Your Seat Is Waiting.</h2>
+            <p class="max-w-2xl mx-auto text-gray-400 mb-8">The next batch begins soon. Entry is free, but your commitment is required. Are you in?</p>
+            <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" class="btn-primary inline-block bg-blue-600 text-white font-bold uppercase tracking-wider px-8 py-4 rounded-lg text-lg">
+                Enter The Perimeter
+            </a>
+            <p class="text-sm mt-12 text-gray-600">&copy; 2025 Srintech. All Rights Reserved. <a href="https://srintech.in" target="_blank" class="hover:text-blue-400">Visit Main Site</a></p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Simple on-scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after revealing to save resources
+                    // revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
+
+</body>
+</html>
