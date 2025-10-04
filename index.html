@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles inspired by the tech theme */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0a0a2a, #1a0a3a, #0a1a3a, #2a0a2a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden; /* Prevents scrollbars from appearing */
+        }
+
+        /* Keyframes for the animated background gradient */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframes for the gear rotation animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Keyframes for the pulsing glow effect on text and borders */
+        @keyframes pulseGlow {
+            0%, 100% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #007bff, 0 0 20px #007bff, 0 0 25px #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 0 10px rgba(0, 123, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #007bff, 0 0 40px #007bff, 0 0 50px #007bff;
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 20px rgba(0, 123, 255, 0.7);
+            }
+        }
+
+        .animated-gear {
+            animation: spin 10s linear infinite;
+        }
+        
+        .pulse-glow-text {
+             animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .pulse-glow-border {
+             border: 2px solid rgba(0, 123, 255, 0.8);
+             animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+    </style>
+</head>
+<body class="text-white flex items-center justify-center min-h-screen">
+
+    <!-- Popup Modal (Initially hidden) -->
+    <div id="redirect-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-900 bg-opacity-80 backdrop-blur-md border border-blue-500 rounded-2xl shadow-2xl p-8 text-center max-w-sm w-full pulse-glow-border">
+            <h2 class="text-2xl font-bold mb-4 text-gray-100">Redirecting</h2>
+            <p class="text-gray-300 mb-6">
+                This site is under maintenance. You will be redirected to our Netrinix Academy.
+            </p>
+            <a href="https://netrinix.com" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 shadow-lg">
+                OK
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="text-center p-8">
+        <!-- Animated Gear Icon -->
+        <svg class="animated-gear w-24 h-24 mx-auto mb-6 text-blue-400" xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 pulse-glow-text">Maintenance In Progress</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
+            Our site is currently down for scheduled maintenance. We'll be back shortly!
+            In the meantime, please visit our academic section.
+        </p>
+        <div class="mb-8">
+            <a href="https://netrinix.com" class="text-blue-400 hover:text-blue-300 text-lg border-b-2 border-blue-400 hover:border-blue-300 transition-colors">
+                Go to Netrinix Academy
+            </a>
+        </div>
+        <p id="countdown-text" class="text-md text-gray-400">
+            You will be automatically redirected in 
+            <span id="countdown-timer" class="font-bold text-xl text-white">15</span> seconds.
+        </p>
+    </div>
+
+    <script>
+        // --- Countdown Timer and Popup Logic ---
+        const countdownElement = document.getElementById('countdown-timer');
+        const countdownTextElement = document.getElementById('countdown-text');
+        const modalElement = document.getElementById('redirect-modal');
+        let timeLeft = 15; // Set countdown time in seconds
+
+        const timer = setInterval(() => {
+            // Decrement time
+            timeLeft--;
+            
+            // Update the display
+            countdownElement.textContent = timeLeft;
+
+            // Check if time is up
+            if (timeLeft <= 0) {
+                clearInterval(timer); // Stop the timer
+                countdownTextElement.textContent = "Please proceed to our academy site."; // Update text
+                modalElement.classList.remove('hidden'); // Show the modal
+            }
+        }, 1000); // Run every second
+    </script>
+</body>
+</html>
+
